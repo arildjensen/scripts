@@ -2,8 +2,8 @@
 
 #-----------------------------------------------------------------------
 # Name.....: template_script.sh
-# Code repo: github.com/arildjensen/dot-files
-# Author...: Arild Jensen
+# Code repo: github.com/arildjensen/scripts
+# Author...: Arild Jensen <ajensen@counter-attack.com>
 # Purpose  : Serves as a sample or template script on which to build
 # new bash scripts.
 
