@@ -21,6 +21,15 @@ function DEBUG ()
   [ "$_DEBUG" == "on" ] && $@
 }
 
+# Setup logging functionality. Unless you're doing trivial stuff you
+# should log to the system log.
+
+function LOG ()
+{
+  LOGBIN=`which logger`
+    [[ -n "$LOGBIN" ]] && $LOGBIN "$0 $@"
+}
+
 
 # Setup standard functions to check for userid (useful if you need to
 # run as root or other specific user) and for correct number of arguments.
