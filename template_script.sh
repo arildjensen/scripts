@@ -26,7 +26,7 @@ DEBUG ()
 
 LOG ()
 {
-	command -v logger > /dev/null 2>&1 && $LOGBIN "$0 $@"
+  command -v logger > /dev/null 2>&1 && $LOGBIN "$0 $@"
 }
 
 
@@ -44,10 +44,10 @@ is_user ()
 
 is_not_user ()
 {
-	if [ "$(id -nu)" = $1 ]; then
-		echo "This script must NOT be run as $1" 1>&2
-		exit 1
-	fi
+  if [ "$(id -nu)" = $1 ]; then
+    echo "This script must NOT be run as $1" 1>&2
+    exit 1
+  fi
 }
 
 check_arguments ()
