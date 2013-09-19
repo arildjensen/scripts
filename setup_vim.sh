@@ -69,7 +69,9 @@ vim_skel () {
 
 vundle ()
 {
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	if [ ! -d ~/.vim/bundle/vundle/.git ]; then
+  	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	fi
 }
 
 main ()
