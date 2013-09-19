@@ -1,15 +1,12 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 #-----------------------------------------------------------------------
-# Name.....: template_script.sh
+# Name.....: setup_vim.sh
 # Code repo: github.com/arildjensen/scripts
 # Author...: Arild Jensen <ajensen@counter-attack.com>
-# Purpose  : Serves as a sample or template script on which to build
-# new bash scripts.
+# Purpose  : Sets up ~/.vim just the way I like it.
 
-# Usage....: Run as user 'arild' with two arguments,
-#            * first arg (e.g,. abc)
-#            * second arg (e.g., xyz
+# Usage....: Run as non-root with no arguments,
 #-----------------------------------------------------------------------
 
 
@@ -37,8 +34,8 @@ LOG ()
 check_userid ()
 {
   # Check userid is correct
-  if [ "$(id -nu)" != $1 ]; then
-    echo "This script must be run as $1" 1>&2
+  if [ "$(id -nu)" = 'root' ]; then
+    echo "This script must not be run as root" 1>&2
     exit 1
   fi
 }
@@ -46,28 +43,44 @@ check_userid ()
 check_arguments ()
 {
   # Check correct number of arguments
-  if [ $1 != 2 ]; then
-    echo "Incorrect number of arguments: $0 [firstarg] [secondarg]" 1>&2
+  if [ $1 != 0 ]; then
+    echo "Incorrect number of arguments: $0" 1>&2
     exit 1
   fi
 }
 
 #-----------------------------------------------------------------------
 
+vim_skel () {
+	if [ ! -d ~/git ]; then
+		mkdir ~/git
+  fi
+
+	if [ ! -d ~/git/dot-files/.git ]; then
+		git clone https://github.com/arildjensen/dot-files ~/git/dot-files
+  fi
+
+	cp ~/git/dot-files/vimrc ~/.vimrc
+	
+	if [ ! -d ~/.vim/bundle ]; then
+		mkdir -p ~/.vim/bundle
+  fi;
+}
+
+vundle ()
+{
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+}
+
 main ()
 {
-  FIRSTARG=$1
-  SECONDARG=$2
-
-  # Print out arguments
-  echo "First argument was $FIRSTARG and the second was $SECONDARG."
-  DEBUG echo "Debugging feature was enabled."
-
+  vim_skel
+  vundle
   exit 0 # Always exit properly
 }
 
 #-----------------------------------------------------------------------
 
-check_userid "arild"
+check_userid 
 check_arguments $#
 main $@
