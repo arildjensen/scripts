@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 #-----------------------------------------------------------------------
 # Name.....: template_script.sh
@@ -26,15 +26,14 @@ DEBUG ()
 
 LOG ()
 {
-  LOGBIN=`which logger`
-    [ -n "$LOGBIN" ] && $LOGBIN "$0 $@"
+	command -v logger > /dev/null 2>&1 && $LOGBIN "$0 $@"
 }
 
 
 # Setup standard functions to check for userid (useful if you need to
 # run as root or other specific user) and for correct number of arguments.
 
-check_userid ()
+is_user ()
 {
   # Check userid is correct
   if [ "$(id -nu)" != $1 ]; then
@@ -43,11 +42,19 @@ check_userid ()
   fi
 }
 
+is_not_user ()
+{
+	if [ "$(id -nu)" = $1 ]; then
+		echo "This script must NOT be run as $1" 1>&2
+		exit 1
+	fi
+}
+
 check_arguments ()
 {
   # Check correct number of arguments
-  if [ $1 != 2 ]; then
-    echo "Incorrect number of arguments: $0 [firstarg] [secondarg]" 1>&2
+  if [ $1 != $2 ]; then
+    echo "Incorrect number of arguments: $1. Correct number is $2." 1>&2
     exit 1
   fi
 }
@@ -68,6 +75,7 @@ main ()
 
 #-----------------------------------------------------------------------
 
-check_userid "arild"
-check_arguments $#
+is_user "arild"
+is_not_user "root"
+check_arguments $# 2
 main $@
