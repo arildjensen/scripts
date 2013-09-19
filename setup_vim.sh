@@ -52,26 +52,26 @@ check_arguments ()
 #-----------------------------------------------------------------------
 
 vim_skel () {
-	if [ ! -d ~/git ]; then
-		mkdir ~/git
+  if [ ! -d ~/git ]; then
+    mkdir ~/git
   fi
 
-	if [ ! -d ~/git/dot-files/.git ]; then
-		git clone https://github.com/arildjensen/dot-files ~/git/dot-files
+  if [ ! -d ~/git/dot-files/.git ]; then
+    git clone https://github.com/arildjensen/dot-files ~/git/dot-files
   fi
 
-	cp ~/git/dot-files/vimrc ~/.vimrc
-	
-	if [ ! -d ~/.vim/bundle ]; then
-		mkdir -p ~/.vim/bundle
+  cp ~/git/dot-files/vimrc ~/.vimrc
+  
+  if [ ! -d ~/.vim/bundle ]; then
+    mkdir -p ~/.vim/bundle
   fi;
 }
 
 vundle ()
 {
-	if [ ! -d ~/.vim/bundle/vundle/.git ]; then
-  	git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-	fi
+  if [ ! -d ~/.vim/bundle/vundle/.git ]; then
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  fi
 }
 
 main ()
