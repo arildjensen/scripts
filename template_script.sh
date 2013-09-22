@@ -75,7 +75,6 @@ main ()
 
 #-----------------------------------------------------------------------
 
-is_user "arild"
 is_not_user "root"
 check_arguments $# 2
 main $@
