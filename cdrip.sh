@@ -11,7 +11,7 @@
 
 options="-a cddb,read,encode,tag,move,playlist,clean"
 options="${options} -d /dev/cdrom"
-options="${options} -o m4a"
+options="${options} -o m4a,mp3"
 options="${options} -V"
 options="${options} -x"
 options="${options} -p"
