@@ -1,25 +1,17 @@
 #!/bin/bash -e
 
 #-----------------------------------------------------------------------
-# Name.....: template_script.sh
-# Code repo: github.com/arildjensen/scripts
-# Author...: Arild Jensen <ajensen@counter-attack.com>
-# Purpose  : Serves as a sample or template script on which to build
-# new bash scripts.
-
-# Usage....: Run as user 'arild' with two arguments,
-#            * first arg (e.g,. abc)
-#            * second arg (e.g., xyz
+# Name........: template_script.sh
+# Code repo...: github.com/arildjensen/scripts
+# Author......: Arild Jensen <ajensen@counter-attack.com>
+# Purpose.....: Serves as a sample or template script on which to build
+#               new bash scripts.
+# Dependencies:
+# Usage.......: Run as user 'arild' with two arguments,
+#               * first arg (e.g,. abc)
+#               * second arg (e.g., xyz
 #-----------------------------------------------------------------------
 
-
-# Setup debugging functionality. If you want verbose output prepend the
-# command with _DEBUG="on"
-
-DEBUG ()
-{
-  [ "$_DEBUG" = "on" ] && $@
-}
 
 # Setup logging functionality. Unless you're doing trivial stuff you
 # should log to the system log.
