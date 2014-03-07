@@ -1,4 +1,11 @@
 language: bash
 
+notifications:
+  email:
+    recipients:
+      - ajensen@counter-attack.com
+    on_success: always
+    on_failure: always
+
 script:
   - make test
