@@ -1,7 +1,9 @@
 #!/bin/bash
+
+# Maintenance script for my MacBook. Right now mostly just backs stuff up.
   
 documents_dirs=( gnucash )
-dot_dirs=( ssh )
+dot_dirs=( ssh gnupg )
 rsync_cmd='rsync -e ssh --delete --recursive --perms --checksum --compress --stats --human-readable --progress'
 destination='ajensen@counter-attack.com'
 
