@@ -4,7 +4,7 @@
 # Name........: build_nginx.sh
 # Author......: Arild Jensen <arildjensen@upwork.com>
 # Purpose.....: A custom build of nginx with extra modules
-# Dependencies: gcc, make, zlib-dev, pcre-dev
+# Dependencies: On Ubuntu 14.04: make gcc build-essential devscripts libpcre3-dev zlib1g-dev
 # Usage.......: Run with no arguments. Do check whether the version
 #               numbers need updating. Note the "make install" part
 #               requires root.
@@ -16,8 +16,8 @@ ngx_lua_ver="0.10.0"
 ngx_devel_kit_ver="0.2.19"
 lua_nginx_ver="0.10.0"
 
-export LUAJIT_LIB=/tmp/lj2/lib
-export LUAJIT_INC=/tmp/lj2/include/luajit-2.0
+export LUAJIT_LIB=/opt/lj2/lib
+export LUAJIT_INC=/opt/lj2/include/luajit-2.0
 
 mkdir /tmp/$$
 cd    /tmp/$$
@@ -41,7 +41,7 @@ rm        lua_nginx-${lua_nginx_ver}.tar.gz
 
 cd /tmp/$$/LuaJIT-2.0.4
 make
-make install PREFIX=/tmp/lj2
+make install PREFIX=/opt/lj2
 
 
 cd /tmp/$$/nginx-${nginx_ver}/
@@ -54,4 +54,6 @@ cd /tmp/$$/nginx-${nginx_ver}/
 
  
 make
-#make install
+make install
+cd
+rm -rf /tmp/$$
